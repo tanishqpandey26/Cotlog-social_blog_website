@@ -12,6 +12,11 @@ import {BiTrash} from "react-icons/bi";
 
 import React , {useEffect, useState} from "react";
 
+import Main from "./main";
+
+import CreatePost from "./createpost";
+
+import About from "./about";
 
 import { collection, getDocs ,deleteDoc,doc } from "firebase/firestore";
 
@@ -26,7 +31,7 @@ function Login(isAuth){
         useEffect(() => {
                 const getPosts = async () => {
                   const data = await getDocs(postsCollectionRef);
-
+                  console.log(data);
                   setPostList(data.docs.map((doc)=> ({...doc.data(), id:doc.id  })));
                 };
 
@@ -81,6 +86,7 @@ function Login(isAuth){
 
 
 
+                {console.log(auth.currentUser.uid)}
 
 <div className="loginPage">
         {postLists.map((post)=>{
@@ -93,7 +99,7 @@ function Login(isAuth){
               </div>
 
               <div className="deletePost">
-                {isAuth && post.author.id === auth.currentUser.uid && (
+                {isAuth && post.author.id === auth?.currentUser?.uid && (
                   <button
                     onClick={() => {
                       deletePost(post.id);

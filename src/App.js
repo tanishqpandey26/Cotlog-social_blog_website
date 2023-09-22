@@ -9,9 +9,10 @@ import Login from "./pages/login";
 import './App.css';
 
 import  CreatePost  from "./pages/createpost";
-
+import Test from "./pages/test";
 import {auth} from "./config/firebase";
 
+import About from "./pages/about";
 
  function App() {
 
@@ -38,9 +39,9 @@ import {auth} from "./config/firebase";
 
           <Route path="/login" element={<Login isAuth={isAuth}/>} />
 
-   
-
-
+          <Route path="/about" element={<About />}></Route>
+<Route  path="/test" element={<Test/>}/>
+          
 
         </Routes>
 

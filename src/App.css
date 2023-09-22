@@ -226,10 +226,12 @@ body{
 width: 100%;
  }
 
+ 
+
  .home-sci{
   position: absolute;
   bottom: 40px;
-  width: 170px;
+  width: 200px;
   display: flex;
   justify-content: space-between;
  }
@@ -517,7 +519,7 @@ margin-top: 10px;
   }
   
   .cpContainer button {
-    margin-top: 20px;
+    margin-top: 5px;
     height: 40px;
     border: none;
     border-radius: 15px;
@@ -578,4 +580,28 @@ margin-top: 10px;
     width: 100%;
   }
 
-  
+
+  .file{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 40px;
+    border: none;
+    /* border-radius: 15px; */
+    cursor: pointer;
+    display: flex;
+  }
+
+  .file button{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    height: 40px;
+    border: none;
+    /* border-radius: 15px; */
+    cursor: pointer;
+    width: 70px;
+    margin-left:100px;
+  }
+
+ .tabs{
+  padding-top: 200px;
+ }

@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 
+import Login from "./login";
+
+import Main from "./main";
+
+import About from "./about";
+
 import {RiArrowGoBackFill} from "react-icons/ri";
 
 import React, {useState, useEffect} from "react";
@@ -10,6 +16,18 @@ import { db,auth} from "../config/firebase";
 
 import { useNavigate } from "react-router-dom";
 
+import { storage } from "../config/firebase";
+
+import {FaGithub, FaTwitter,FaLinkedin,FaGoogle} from "react-icons/fa";
+
+import {ref,uploadBytes} from "firebase/storage"
+
+import {v4} from "uuid";
+
+import {MdFileUpload} from "react-icons/md";
+
+
+
 function CreatePost({isAuth}) {
 
     const [institute, setInstitute]=useState("");
@@ -17,6 +35,21 @@ function CreatePost({isAuth}) {
     const [coursename,setCourseName ]=useState("");
 
     const [postText, setPosttext]=useState("");
+
+    const[imageUpload,setImageUpload]= useState(null);
+
+    const uploadImage=()=>{
+
+    if(imageUpload==null)return;
+
+    const imageRef= ref(storage, `images/ ${imageUpload.name + v4()}` );
+
+    uploadBytes(imageRef, imageUpload).then(()=>{
+        alert("File Uploaded");
+    })
+
+    }
+
 
     const postsCollectionsRef= collection(db,"posts");
 
@@ -84,9 +117,22 @@ function CreatePost({isAuth}) {
         }}></textarea>
     </div>
 
+
+    <div className="file">
+        <input type="file" onChange={(event)=>{
+            setImageUpload(event.target.files[0]);
+        }}></input>
+        <button  onClick={uploadImage}><MdFileUpload/></button>
+    </div>
+
+
     <button onClick={createPost}>Submit </button>
 
 </div>
+
+
+
+
 
 
 

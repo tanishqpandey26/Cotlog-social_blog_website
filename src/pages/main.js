@@ -8,6 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 import  Login  from "./login";
 
+import About from "./about";
+
+import CreatePost from "./createpost";
+
+import {CgWebsite} from "react-icons/cg"
+
 import { Link } from "react-router-dom";
 
 
@@ -22,7 +28,7 @@ function Main(){
   const signInWithGoogle = async ()=>{
       const result= await signInWithPopup(auth,provider);
       console.log(result);
-      navigate('/login')
+      navigate('/test');
   
       
   };
@@ -63,12 +69,13 @@ function Main(){
   
 
       <div className="home-content">
-        <h3>Hi,Welcome</h3>
-        <h4>CotLog</h4>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta deleniti quos quae iste amet, repudiandae, id adipisci quo ipsa repellat laborum quisquam ipsam praesentium? Provident consequuntur velit ratione distinctio magnam? fuytgasuyfgtuasoyfgusdagfusgfgfgsfjgsadjlfgjgjhagfjsgfjgfgsdfjhgsjfgjasdgfjsgfjg</p>
+        <h3>Hi,Welcome!</h3>
+        {/* <h4>CotLog</h4> */}
+        <p>Welcome to CotLog.  Navigate the world of higher education with firsthand reviews about colleges, universities, and courses. Whether you're embarking on your undergraduate journey, considering postgraduate options, or exploring new courses, our platform offers a treasure trove of information to guide your choices. Connect with peers, share your own experiences, and make informed decisions. </p>
         <div className="btn-box">
-          <a href="#"> Feedback</a>
-          <a href="#">Guidelines</a>
+          
+          <Link to='/about'>Feedback</Link>
+          <Link to='/about'>Guidelines</Link>
         </div>
       </div>
 
@@ -81,11 +88,13 @@ function Main(){
 
 <div className="home-sci">
 
-<a href="#"><FaLinkedin/></a>
+<a href="https://en.wikipedia.org/wiki/LinkedIn"><FaLinkedin/></a>
 
 <a href="#"><FaGithub/></a>
 
-<a href="#"><FaTwitter/></a>    
+<a href="#"><FaTwitter/></a>  
+
+<a href="https://digital-resume-fawn.vercel.app/" ><CgWebsite/></a>  
 
 </div>
 
