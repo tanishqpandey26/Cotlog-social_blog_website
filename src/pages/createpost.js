@@ -56,7 +56,7 @@ function CreatePost({isAuth}) {
     let navigate=useNavigate();
 
     const createPost= async() =>{
-       await addDoc(postsCollectionsRef,{institute,coursename,postText,author:{name:auth.currentUser?.displayName,id:auth.currentUser?.uid},
+       await addDoc(postsCollectionsRef,{institute,coursename,postText,author:{name:auth.currentUser?.displayName,id:auth?.currentUser?.uid},
     });
     navigate("/login")
     }

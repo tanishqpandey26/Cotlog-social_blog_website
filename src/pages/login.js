@@ -86,7 +86,7 @@ function Login(isAuth){
 
 
 
-                {console.log(auth.currentUser.uid)}
+                {console.log(auth?.currentUser?.uid)}
 
 <div className="loginPage">
         {postLists.map((post)=>{
