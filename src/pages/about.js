@@ -1,4 +1,4 @@
-import Login from "./login";
+import Login from "./profile";
 
 import CreatePost from "./createpost";
 
@@ -41,6 +41,9 @@ function About () {
     </header>
     
 </div>
+
+
+
 
 
 <section className="home">

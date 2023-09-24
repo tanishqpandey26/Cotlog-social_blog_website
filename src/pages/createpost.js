@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-import Login from "./login";
+import Profile from "./profile";
+
+import Loginpage from "./loginpage";
 
 import Main from "./main";
 
@@ -56,10 +58,20 @@ function CreatePost({isAuth}) {
     let navigate=useNavigate();
 
     const createPost= async() =>{
-       await addDoc(postsCollectionsRef,{institute,coursename,postText,author:{name:auth.currentUser?.displayName,id:auth?.currentUser?.uid},
+       await addDoc(postsCollectionsRef,{
+        institute,
+        coursename,
+        postText,
+        author:{name:auth.currentUser?.displayName,id:auth?.currentUser?.uid},
     });
-    navigate("/login")
-    }
+    navigate("/profile")
+    };
+
+    useEffect(() => {
+        if (!isAuth) {
+          navigate("/loginpage");
+        }
+      }, []);
 
     
 
@@ -75,7 +87,7 @@ function CreatePost({isAuth}) {
 
 <nav className="navbar">
 
-        <Link to="/login"><RiArrowGoBackFill/></Link>
+        <Link to="/profile"><RiArrowGoBackFill/></Link>
         
         </nav>
         </header>

@@ -4,19 +4,33 @@ import React, { useState } from "react";
 
 import { BrowserRouter as Router, Route, Routes,Link } from "react-router-dom";
 
-import Login from "./pages/login";
+import Loginpage from "./pages/loginpage"; 
 
 import './App.css';
 
 import  CreatePost  from "./pages/createpost";
-import Test from "./pages/test";
+
+import Profile from "./pages/profile";
+
 import {auth} from "./config/firebase";
 
 import About from "./pages/about";
 
+import { signOut } from "firebase/auth";
+
+
+import { useNavigate } from "react-router-dom";
+
  function App() {
 
-  const [isAuth,setIsAuth] =useState(localStorage.getItem("isAuth"));
+
+  
+
+
+  
+
+
+  
 
 
   return (
@@ -34,13 +48,14 @@ import About from "./pages/about";
           <Route path="/" element={<Main />} />
 
 
-          <Route path="/createpost" element={<CreatePost/>} />
+          <Route path="/createpost" element={<CreatePost  />} />
 
 
-          <Route path="/login" element={<Login isAuth={isAuth}/>} />
+          <Route path="/loginpage" element={<Loginpage  />} />
 
           <Route path="/about" element={<About />}></Route>
-<Route  path="/test" element={<Test/>}/>
+
+          <Route  path="/profile" element={<Profile  />}/>
           
 
         </Routes>
@@ -143,15 +158,3 @@ export default App;
 //     </div>
 //     );
 // }
-
-
-
-
-
-
-
-
-
-
-
-

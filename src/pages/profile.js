@@ -14,15 +14,20 @@ import React , {useEffect, useState} from "react";
 
 import Main from "./main";
 
+import Loginpage from "./loginpage";
+
 import CreatePost from "./createpost";
 
 import About from "./about";
 
-import { collection, getDocs ,deleteDoc,doc } from "firebase/firestore";
+import { collection, getDocs ,deleteDoc,doc, addDoc } from "firebase/firestore";
 
 import { auth,db } from "../config/firebase";
 
-function Login(isAuth){
+import {signUserOut} from "../App"
+
+
+function Profile({isAuth}){
 
         const [postLists, setPostList]=useState([]);
        
@@ -31,12 +36,12 @@ function Login(isAuth){
         useEffect(() => {
                 const getPosts = async () => {
                   const data = await getDocs(postsCollectionRef);
-                  console.log(data);
+                //  console.log(data);
                   setPostList(data.docs.map((doc)=> ({...doc.data(), id:doc.id  })));
                 };
 
                 getPosts();
-        });
+        },[]);
 
 
     const navigate= useNavigate();
@@ -44,10 +49,14 @@ function Login(isAuth){
     const [user] = useAuthState(auth);
  
     const signUserOut=async()=>{
-           await signOut(auth);
+      signOut(auth).then(() => {
+        localStorage.clear();
+        // window.location.pathname = "/";
 
-           navigate('/')
+        
+      });
     }
+  
 
 
     const deletePost=async(id)=>{
@@ -75,7 +84,7 @@ function Login(isAuth){
         <img src={auth.currentUser?.photoURL || ""} width="25"  height="25" />
           <p>{auth.currentUser?.displayName}</p>
         <Link to="/createpost" className="loginpage-link1"><IoCreateOutline/></Link>
-        <Link className="loginpage-link2" to="/main"   onClick={signUserOut}><IoLogOutOutline/></Link>
+        <Link to="/" className="loginpage-link2"    onClick={signUserOut}><IoLogOutOutline/></Link>
         </>
   )}
         
@@ -99,7 +108,7 @@ function Login(isAuth){
               </div>
 
               <div className="deletePost">
-                {isAuth && post.author.id === auth?.currentUser?.uid && (
+                {isAuth && post.author.id === auth.currentUser.uid && (
                   <button
                     onClick={() => {
                       deletePost(post.id);
@@ -144,4 +153,4 @@ function Login(isAuth){
    
 }
 
-export default Login;
+export default Profile;

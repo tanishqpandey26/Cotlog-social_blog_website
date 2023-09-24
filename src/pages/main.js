@@ -1,12 +1,8 @@
 import "../App";
 
-import {auth,provider} from "../config/firebase";
+import  Loginpage  from "./loginpage";
 
-import { signInWithPopup } from "firebase/auth";
-
-import { useNavigate } from "react-router-dom";
-
-import  Login  from "./login";
+import Profile from "./profile";
 
 import About from "./about";
 
@@ -23,15 +19,7 @@ import {FaGithub, FaTwitter,FaLinkedin,FaGoogle} from "react-icons/fa";
 
 function Main(){
 
-  const navigate= useNavigate();
-
-  const signInWithGoogle = async ()=>{
-      const result= await signInWithPopup(auth,provider);
-      console.log(result);
-      navigate('/test');
-  
-      
-  };
+ 
 
 
 
@@ -49,17 +37,13 @@ function Main(){
         <a href="#" className="logo"><h2>CotLog.</h2></a>
 
 <nav className="navbar">
-  
- 
 
-      
-   
-        
-        <Link to="/login" className="mainpage-link1"  onClick={signInWithGoogle}>Login with <FaGoogle /></Link>
+        <Link to="/loginpage" className="mainpage-link1"  >Login with <FaGoogle /></Link>
         </nav>
         </header>
         
     </div>
+    
     
 
     <section className="home">
@@ -108,20 +92,3 @@ function Main(){
 }
 
 export default Main;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
