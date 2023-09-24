@@ -30,7 +30,7 @@ import {MdFileUpload} from "react-icons/md";
 
 
 
-function CreatePost({isAuth}) {
+function CreatePost(isAuth) {
 
     const [institute, setInstitute]=useState("");
     

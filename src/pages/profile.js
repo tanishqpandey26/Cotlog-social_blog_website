@@ -27,7 +27,7 @@ import { auth,db } from "../config/firebase";
 import {signUserOut} from "../App"
 
 
-function Profile({isAuth}){
+function Profile(isAuth){
 
         const [postLists, setPostList]=useState([]);
        
@@ -51,7 +51,7 @@ function Profile({isAuth}){
     const signUserOut=async()=>{
       signOut(auth).then(() => {
         localStorage.clear();
-        // window.location.pathname = "/";
+        window.location.pathname = "/";
 
         
       });
@@ -84,7 +84,7 @@ function Profile({isAuth}){
         <img src={auth.currentUser?.photoURL || ""} width="25"  height="25" />
           <p>{auth.currentUser?.displayName}</p>
         <Link to="/createpost" className="loginpage-link1"><IoCreateOutline/></Link>
-        <Link to="/" className="loginpage-link2"    onClick={signUserOut}><IoLogOutOutline/></Link>
+        <Link  to="/" className="loginpage-link2"    onClick={signUserOut}><IoLogOutOutline/></Link>
         </>
   )}
         
@@ -95,7 +95,7 @@ function Profile({isAuth}){
 
 
 
-                {console.log(auth?.currentUser?.uid)}
+                {console.log(auth.currentUser.uid)}
 
 <div className="loginPage">
         {postLists.map((post)=>{
@@ -124,8 +124,10 @@ function Profile({isAuth}){
 
               <div className="title"><h2>{post.coursename}</h2></div>
               <br></br>
-              <div className="postTextContainer"> {post.postText} </div>
+              <div className="postTextContainer"> {post.postText}
+               </div>
               <br></br>
+
             <h3>@{post.author.name}</h3>
 
 

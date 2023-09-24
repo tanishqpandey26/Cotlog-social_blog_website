@@ -55,7 +55,7 @@ function Main(){
       <div className="home-content">
         <h3>Hi,Welcome!</h3>
         {/* <h4>CotLog</h4> */}
-        <p>Welcome to CotLog.  Navigate the world of higher education with firsthand reviews about colleges, universities, and courses. Whether you're embarking on your undergraduate journey, considering postgraduate options, or exploring new courses, our platform offers a treasure trove of information to guide your choices. Connect with peers, share your own experiences, and make informed decisions. </p>
+        <p>Welcome to CotLog! Navigate the world of higher education with firsthand reviews about colleges, universities, and courses. Whether you're embarking on your undergraduate journey, considering postgraduate options, or exploring new courses, our platform offers a treasure trove of information to guide your choices. Connect with peers, share your own experiences, and make informed decisions. </p>
         <div className="btn-box">
           
           <Link to='/about'>Feedback</Link>
