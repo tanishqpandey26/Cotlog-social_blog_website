@@ -62,7 +62,11 @@ function CreatePost(isAuth) {
         institute,
         coursename,
         postText,
-        author:{name:auth.currentUser?.displayName,id:auth?.currentUser?.uid},
+        author:{
+            name:auth.currentUser?.displayName,
+            id:auth?.currentUser?.uid,
+            profilePic: auth.currentUser?.photoURL
+        }
     });
     navigate("/profile")
     };

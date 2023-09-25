@@ -15,7 +15,7 @@ import { auth, db } from "../config/firebase";
 
 function Profile(isAuth) {
     const [postLists, setPostList] = useState([]);
-    const [searchQuery, setSearchQuery] = useState(""); // Added state for search
+    const [searchQuery, setSearchQuery] = useState(""); 
 
     const postsCollectionRef = collection(db, "posts");
 
@@ -83,11 +83,14 @@ function Profile(isAuth) {
             <div className="search-bar-container">
                 <input
                     type="text"
-                    placeholder="Search by College, Course, Description, Author..."
+                    placeholder="&#x1f50d; Search by keyword..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
             </div>
+
+
+            
 
             <div className="profilePage">
                 {filteredPosts.map((post) => {
@@ -119,8 +122,10 @@ function Profile(isAuth) {
                                 <br></br>
                                 <div className="postTextContainer"> {post.postText}</div>
                                 <br></br>
-
-                                <h3>@{post.author.name}</h3>
+                          <div className="author-details-profilepage">
+                          <img src={post.author.profilePic || "/path/to/default/image.jpg"} alt={post.author.name} className="profile-pic" />
+                                <h3>   {post.author.name}</h3>
+                          </div>      
                             </div>
                         </div>
                     );
@@ -131,3 +136,6 @@ function Profile(isAuth) {
 }
 
 export default Profile;
+
+
+

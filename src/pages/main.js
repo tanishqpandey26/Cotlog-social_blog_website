@@ -38,7 +38,7 @@ function Main(){
 
 <nav className="navbar">
 
-        <Link to="/loginpage" className="mainpage-link1"  >Login with <FaGoogle /></Link>
+        <Link to="/loginpage" className="mainpage-link1"  >Login <FaGoogle /></Link>
         </nav>
         </header>
         
@@ -72,11 +72,11 @@ function Main(){
 
 <div className="home-sci">
 
-<a href="https://en.wikipedia.org/wiki/LinkedIn"><FaLinkedin/></a>
+<a href="https://www.linkedin.com/in/pandey26tanishq/"><FaLinkedin/></a>
 
-<a href="#"><FaGithub/></a>
+<a href="https://github.com/tanishqpandey26"><FaGithub/></a>
 
-<a href="#"><FaTwitter/></a>  
+<a href="https://twitter.com/tanishqvatsa26"><FaTwitter/></a>  
 
 <a href="https://digital-resume-fawn.vercel.app/" ><CgWebsite/></a>  
 
