@@ -340,7 +340,7 @@ width: 100%;
   }
  }
 
- @media(max-width:780px) {
+ @media(max-width:768px) {
 
   .home-content p{
     margin-right: 5px;
@@ -370,13 +370,9 @@ width: 100%;
   }
 
   
-  .loginPage{
-		grid-template-columns: repeat(1, 1fr);
-	}
+  
 
-  .postlp{
-    margin-top: 150px;
-  }
+  
  
 
  }
@@ -399,9 +395,7 @@ width: 100%;
 		grid-template-columns:1fr;
 	}
 
-  .loginPage{
-		grid-template-columns:1fr;
-	}
+ 
 
  
  }
@@ -534,10 +528,10 @@ margin-top: 10px;
 
 
 
-  .loginPage .postlp{
+  .profilePage .postlp{
     padding-top: 15px;
-    padding-bottom: 10px;
-   margin-top: 25%;
+    padding-bottom: 15px;
+   
     display: flex;
     border-style: double;
    padding-left: 10px;
@@ -549,11 +543,12 @@ margin-top: 10px;
 
 
  
-  .loginPage{
+  .profilePage{
   
   display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
     gap: 20px;
+    margin-top: 5vh;
     padding: 20px;
     border-radius: 5px;
     margin-bottom: 10px;   
@@ -657,4 +652,33 @@ margin-top: 10px;
   background-color: #ebebeb;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
   cursor: not-allowed;
+}
+
+
+
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  margin-top: 14vh;
+}
+
+.search-bar-container input {
+  width: 80%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar-container input:focus {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar-container input::placeholder {
+  color: #888;
 }
