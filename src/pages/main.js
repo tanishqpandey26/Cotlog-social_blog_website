@@ -38,7 +38,7 @@ function Main(){
 
 <nav className="navbar">
 
-        <Link to="/loginpage" className="mainpage-link1"  >Login <FaGoogle /></Link>
+        <Link to="/loginpage" className="mainpage-link1"  >Login </Link>
         </nav>
         </header>
         

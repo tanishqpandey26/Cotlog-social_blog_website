@@ -29,7 +29,6 @@ import {v4} from "uuid";
 import {MdFileUpload} from "react-icons/md";
 
 
-
 function CreatePost(isAuth) {
 
     const [institute, setInstitute]=useState("");
@@ -66,7 +65,8 @@ function CreatePost(isAuth) {
             name:auth.currentUser?.displayName,
             id:auth?.currentUser?.uid,
             profilePic: auth.currentUser?.photoURL
-        }
+        },
+        createdAt: new Date().toISOString()
     });
     navigate("/profile")
     };
@@ -77,7 +77,7 @@ function CreatePost(isAuth) {
         }
       }, []);
 
-    
+
 
     return(
 
@@ -87,14 +87,20 @@ function CreatePost(isAuth) {
 <div>
 
 <header className="header">
-        <a href="#" className="logo"><h2>CotLog.</h2></a>
-
-<nav className="navbar">
-
-        <Link to="/profile"><RiArrowGoBackFill/></Link>
-        
-        </nav>
-        </header>
+                <a href="#" className="logo">
+                    <h2>CotLog</h2>
+                </a>
+                <nav className="navbar-login">
+                    {auth.currentUser  && (
+                        <>
+                            <img src={auth.currentUser?.photoURL || ""} width="25" height="25" />
+                            <p>{auth.currentUser?.displayName}</p>
+                           
+                            <Link to="/profile"><RiArrowGoBackFill/></Link>
+                        </>
+                    )}
+                </nav>
+            </header>
         
     </div>
 

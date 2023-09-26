@@ -1,6 +1,6 @@
 import {auth,provider} from "../config/firebase";
 
-import { signInWithPopup  } from "firebase/auth";
+import { signInWithPopup,GithubAuthProvider,OAuthProvider } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import {RiArrowGoBackFill} from "react-icons/ri";
 
 import React from "react";
 
-import {FaGithub, FaTwitter,FaLinkedin,FaGoogle} from "react-icons/fa";
+import {FaGithub, FaTwitter,FaLinkedin,FaGoogle,FaMicrosoft} from "react-icons/fa";
 
 
 
@@ -30,6 +30,26 @@ function Loginpage(){
       });
   };
 
+  const signInWithGithub = async()=>{
+    const githubProvider = new GithubAuthProvider();
+    await signInWithPopup(auth, githubProvider).then((result) => {
+        localStorage.setItem("isAuth", true);
+        setIsAuth(true);
+        navigate("/profile");
+    });
+  };
+
+//   const signInWithMicrosoft = async() => {
+//     const microsoftProvider = new OAuthProvider('microsoft.com');
+//     await signInWithPopup(auth, microsoftProvider).then((result) => {
+//         localStorage.setItem("isAuth", true);
+//         setIsAuth(true);
+//         navigate("/profile");
+//         console.log("pong!");
+//     }).catch(error => {
+//         console.error(error.message);
+//     });
+// };
 
 
 
@@ -60,6 +80,18 @@ function Loginpage(){
       <button className="login-with-google-btn" onClick={signInWithGoogle}>
         Sign in with Google
       </button>
+
+      <button className="login-with-github-btn" onClick={signInWithGithub}>
+         <FaGithub/>
+         Sign in with GitHub  
+        </button>
+
+        {/* <button className="login-with-microsoft-btn" onClick={signInWithMicrosoft}>
+        <FaMicrosoft/>
+    Sign in with Microsoft
+</button> */}
+
+
     </div>
 
 

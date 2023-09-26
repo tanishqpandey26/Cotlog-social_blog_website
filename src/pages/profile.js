@@ -12,8 +12,13 @@ import CreatePost from "./createpost";
 import About from "./about";
 import { auth, db } from "../config/firebase";
 
+import { format } from 'date-fns';
+
 
 function Profile(isAuth) {
+
+   
+
     const [postLists, setPostList] = useState([]);
     const [searchQuery, setSearchQuery] = useState(""); 
 
@@ -25,6 +30,8 @@ function Profile(isAuth) {
         window.location.reload();
         alert("Your Post was deleted!");
     };
+
+  
 
     useEffect(() => {
         const getPosts = async () => {
@@ -58,80 +65,84 @@ function Profile(isAuth) {
   
 
     return (
-        <div>
-            <header className="header">
-                <a href="#" className="logo">
-                    <h2>CotLog</h2>
-                </a>
-                <nav className="navbar-login">
-                    {user && (
-                        <>
-                            <img src={auth.currentUser?.photoURL || ""} width="25" height="25" />
-                            <p>{auth.currentUser?.displayName}</p>
-                            <Link to="/createpost" className="loginpage-link1">
-                                <IoCreateOutline />
-                            </Link>
-                            <Link to="/" className="loginpage-link2" onClick={signUserOut}>
-                                <IoLogOutOutline />
-                            </Link>
-                        </>
-                    )}
-                </nav>
-            </header>
+<div>
+<header className="header">
+<a href="#" className="logo">
+<h2>CotLog</h2>
+</a>
+<nav className="navbar-login">
+{user && (
+    <>
+        <img src={auth.currentUser?.photoURL || ""} width="25" height="25" />
+        <p>{auth.currentUser?.displayName}</p>
+        <Link to="/createpost" className="loginpage-link1">
+            <IoCreateOutline />
+        </Link>
+        <Link to="/" className="loginpage-link2" onClick={signUserOut}>
+            <IoLogOutOutline />
+        </Link>
+    </>
+)}
+</nav>
+</header>
 
-            {/* Search box */}
-            <div className="search-bar-container">
-                <input
-                    type="text"
-                    placeholder="&#x1f50d; Search by keyword..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                />
+{/* Search box */}
+<div className="search-bar-container">
+<input
+type="text"
+placeholder="&#x1f50d; Search by keyword..."
+value={searchQuery}
+onChange={(e) => setSearchQuery(e.target.value)}
+/>
+</div>
+
+
+
+
+<div className="profilePage">
+{filteredPosts.map((post) => {
+const readableDate = format(new Date(post.createdAt), 'PPP');
+
+return (
+    <div className="postlp">
+        <div className="postHeader">
+            <div className="title">
+                <h1> {post.institute}</h1>
             </div>
 
-
-            
-
-            <div className="profilePage">
-                {filteredPosts.map((post) => {
-                    return (
-                        <div className="postlp">
-                            <div className="postHeader">
-                                <div className="title">
-                                    <h1> {post.institute}</h1>
-                                </div>
-
-                                <div className="deletePost">
-                                    {isAuth && post.author.id === auth.currentUser.uid && (
-                                        <button
-                                            onClick={() => {
-                                                deletePost(post.id);
-                                            }}
-                                        >
-                                            {" "}
-                                            <BiTrash />
-                                        </button>
-                                    )}
-                                </div>
-
-                                <br></br>
-
-                                <div className="title">
-                                    <h2>{post.coursename}</h2>
-                                </div>
-                                <br></br>
-                                <div className="postTextContainer"> {post.postText}</div>
-                                <br></br>
-                          <div className="author-details-profilepage">
-                          <img src={post.author.profilePic || "/path/to/default/image.jpg"} alt={post.author.name} className="profile-pic" />
-                                <h3>   {post.author.name}</h3>
-                          </div>      
-                            </div>
-                        </div>
-                    );
-                })}
+            <div className="deletePost">
+                {isAuth && post.author.id === auth.currentUser.uid && (
+                    <button
+                        onClick={() => {
+                            deletePost(post.id);
+                        }}
+                    >
+                        {" "}
+                        <BiTrash />
+                    </button>
+                )}
             </div>
-        </div>
+
+            <br></br>
+
+            <div className="title">
+                <h2>{post.coursename}</h2>
+            </div>
+            <br></br>
+            <div className="postTextContainer"> {post.postText}</div>
+            <br></br>
+        <div className="author-details-profilepage">
+        <img src={post.author.profilePic || "/path/to/default/image.jpg"} alt={post.author.name} className="profile-pic" />
+            <h3>   {post.author.name}</h3>
+            </div>
+            <div className="postDate"> {readableDate}</div>
+        </div>      
+        
+    </div>
+);
+})}
+</div>
+</div>
     );
 }
 
