@@ -5,6 +5,11 @@ import { signOut } from "firebase/auth";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { IoCreateOutline, IoLogOutOutline } from "react-icons/io5";
 import { BiTrash } from "react-icons/bi";
+import {BsBookmarkPlusFill} from "react-icons/bs";
+import {BsFillHeartFill} from "react-icons/bs";
+import {BiSolidBookmarkStar} from "react-icons/bi";
+import {BiSolidCommentDetail} from "react-icons/bi";
+import {MdOutlineArrowUpward} from "react-icons/md"
 
 import Main from "./main";
 import Loginpage from "./loginpage";
@@ -15,9 +20,12 @@ import { auth, db } from "../config/firebase";
 import { format } from 'date-fns';
 
 
+
+
 function Profile(isAuth) {
 
    
+    const [dropdownVisible, setDropdownVisible] = useState(false);
 
     const [postLists, setPostList] = useState([]);
     const [searchQuery, setSearchQuery] = useState(""); 
@@ -36,7 +44,11 @@ function Profile(isAuth) {
     useEffect(() => {
         const getPosts = async () => {
             const data = await getDocs(postsCollectionRef);
-            setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            let fetchedPosts =data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+
+            fetchedPosts = fetchedPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            setPostList(fetchedPosts);
         };
 
         getPosts();
@@ -46,11 +58,13 @@ function Profile(isAuth) {
     const [user] = useAuthState(auth);
 
     const filteredPosts = postLists.filter(post => {
+        const readableDate = format(new Date(post.createdAt), 'PPP');
         return (
             post.institute.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.coursename.toLowerCase().includes(searchQuery.toLowerCase()) ||
             post.postText.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.author.name.toLowerCase().includes(searchQuery.toLowerCase())
+            post.author.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            readableDate.toLowerCase().includes(searchQuery.toLowerCase()) 
         );
     });
 
@@ -62,35 +76,115 @@ function Profile(isAuth) {
         
       });
     }
-  
+
+    const [showScrollButton, setShowScrollButton] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            setShowScrollButton(window.scrollY > 300); // Change 300 to your desired scroll distance
+        };
+        
+        window.addEventListener('scroll', onScroll);
+    
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+        };
+    }, []);
+
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+    
+    
 
     return (
+
 <div>
+
 <header className="header">
-<a href="#" className="logo">
-<h2>CotLog</h2>
-</a>
-<nav className="navbar-login">
-{user && (
-    <>
-        <img src={auth.currentUser?.photoURL || ""} width="25" height="25" />
-        <p>{auth.currentUser?.displayName}</p>
-        <Link to="/createpost" className="loginpage-link1">
-            <IoCreateOutline />
-        </Link>
-        <Link to="/" className="loginpage-link2" onClick={signUserOut}>
-            <IoLogOutOutline />
-        </Link>
-    </>
-)}
-</nav>
+    <a href="#" className="logo">
+        <h2>CotLog</h2>
+    </a>
+    <nav className="navbar-login">
+        {user && (
+            <>
+            <div className={`profile-container ${dropdownVisible ? 'dropdown-visible' : ''}`}>
+                <img 
+                    src={auth.currentUser?.photoURL || ""} 
+                    width="25" 
+                    height="25" 
+                    onClick={() => setDropdownVisible(!dropdownVisible)} 
+                />
+                <p className="profile-username">{auth.currentUser?.displayName}</p>
+               
+
+               
+                {dropdownVisible && (
+                           
+                           <>
+                  <div className="dropdown">
+                  <div className="profile-dropdown">
+                  
+                       <div className="dropdown-username">
+                       <img 
+    src={auth.currentUser?.photoURL || ""} 
+    width="25" 
+    height="25" 
+    onClick={() => setDropdownVisible(!dropdownVisible)} 
+/>
+
+                          {auth.currentUser?.displayName}
+                      </div>
+
+                      <Link to="/createpost" className="dropdown-link loginpage-link1">
+                          <IoCreateOutline /> Create Post
+                      </Link>
+
+                      <Link to="/createpost" className="dropdown-link dropdown-your-posts">
+                          <BiSolidCommentDetail /> Your Posts
+                      </Link>
+
+                      <Link to="/createpost" className="dropdown-link dropdown-liked-posts">
+                      <BsFillHeartFill/> Liked Posts
+                      </Link>
+
+                      <Link to="/createpost" className="dropdown-link dropdown-liked-posts">
+                      <BiSolidBookmarkStar/> Bookmarks
+                      </Link>
+
+                      
+                      <Link to="/" className="dropdown-link loginpage-link2" onClick={signUserOut}>
+                      <IoLogOutOutline style={{ marginRight: '1px' }} /> Log Out
+
+                      </Link>
+                      
+                  </div>
+                  </div>
+                      
+                  <div className="overlay" onClick={() => setDropdownVisible(false)}></div>
+                           
+                            </>
+                    
+                )}
+                
+  </div>
+
+  
+               
+            </>
+        )}
+    </nav>
 </header>
 
-{/* Search box */}
+
 <div className="search-bar-container">
 <input
 type="text"
-placeholder="&#x1f50d; Search by keyword..."
+placeholder="&#x1f50d; Search by keyword or date "
 value={searchQuery}
 onChange={(e) => setSearchQuery(e.target.value)}
 />
@@ -125,6 +219,9 @@ return (
 
             <br></br>
 
+        
+
+
             <div className="title">
                 <h2>{post.coursename}</h2>
             </div>
@@ -142,11 +239,19 @@ return (
 );
 })}
 </div>
+
+{showScrollButton && (
+    <button 
+        className="scroll-to-top-btn"
+        onClick={scrollToTop}
+    >
+        <MdOutlineArrowUpward />
+    </button>
+)}
+
 </div>
     );
 }
 
 export default Profile;
-
-
 

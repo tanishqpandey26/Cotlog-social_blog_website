@@ -12,6 +12,7 @@ import {CgWebsite} from "react-icons/cg"
 
 import { Link } from "react-router-dom";
 
+import {BsFillFileEarmarkPdfFill} from "react-icons/bs";
 
 import {FaGithub, FaTwitter,FaLinkedin,FaGoogle} from "react-icons/fa";
 
@@ -76,9 +77,11 @@ function Main(){
 
 <a href="https://github.com/tanishqpandey26"><FaGithub/></a>
 
+<a href="https://digital-resume-fawn.vercel.app/" ><BsFillFileEarmarkPdfFill/></a>  
+
 <a href="https://twitter.com/tanishqvatsa26"><FaTwitter/></a>  
 
-<a href="https://digital-resume-fawn.vercel.app/" ><CgWebsite/></a>  
+
 
 </div>
 
