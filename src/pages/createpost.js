@@ -51,10 +51,11 @@ function CreatePost(isAuth) {
 
     }
 
+    let navigate=useNavigate();
 
     const postsCollectionsRef= collection(db,"posts");
 
-    let navigate=useNavigate();
+   
 
     const createPost= async() =>{
        await addDoc(postsCollectionsRef,{
@@ -66,10 +67,13 @@ function CreatePost(isAuth) {
             id:auth?.currentUser?.uid,
             profilePic: auth.currentUser?.photoURL
         },
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        likes: [] 
     });
     navigate("/profile")
     };
+
+    
 
     useEffect(() => {
         if (!isAuth) {

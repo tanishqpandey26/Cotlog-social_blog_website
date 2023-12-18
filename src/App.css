@@ -555,7 +555,7 @@ margin-top: 10px;
   margin-top: 20vh;
   width: 20em;
     width: 100%;
-    /* height: calc(100vh - 80px); */
+   
     display: grid;
     place-items: center;
 
@@ -567,7 +567,7 @@ margin-top: 10px;
   }
   
   .cpContainer {
-    /* width: 500px; */
+    
     height: auto;
     
     background-color: #081b29;
@@ -722,7 +722,7 @@ margin-top: 10px;
     margin-bottom: 25px;
     height: 40px;
     border: none;
-    /* border-radius: 15px; */
+    
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -745,7 +745,7 @@ margin-top: 10px;
     margin-bottom: 1px;
     height: 40px;
     border: none;
-    /* border-radius: 15px; */
+    
     cursor: pointer;
     width: 70px;
     margin-left:100px;
@@ -790,12 +790,9 @@ margin-top: 10px;
   cursor: pointer;
   margin-top: 20px;
   transition: background-color 0.3s, box-shadow 0.3s;
-  /* padding: 5px 16px 12px 42px; */
-  
-  
-  
+
   box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
-  /* color: #757575; */
+  
   font-size: 25px;
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -805,7 +802,7 @@ margin-top: 10px;
   background-repeat: no-repeat;
   background-position: 12px 11px;
 
-  display: block;
+    display: block;
     width: 100%;
     padding: 10px 15px;
     background-color: #4285F4;
@@ -827,7 +824,7 @@ margin-top: 10px;
   background-color: #2a75f3;
 }
 .login-with-google-btn:active {
-  /* background-color: #eeeeee; */
+ 
   background-color: #2167c9;
 }
 .login-with-google-btn:focus {
@@ -861,7 +858,7 @@ margin-top: 10px;
   border-radius: 50px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
   outline: none;
-  /* transition: box-shadow 0.3s ease; */
+  
   transition: transform 0.2s;
 }
 
@@ -882,12 +879,14 @@ margin-top: 10px;
 
 .deletePost{
   position: absolute;
-  top: 10px;     /* 10px from the top */
-  right: 10px;   /* 10px from the right */
+  top: 10px;     
+  right: 10px;   
   background: none;
   border: none;
   cursor: pointer;
 }
+
+
 
 .deletePost button {
   background-color: transparent;
@@ -927,14 +926,14 @@ page-link2{
 
 .author-details-profilepage img, .author-details-profilepage h3 {
   display: inline-block;
-  vertical-align: middle; /* aligns them to the middle of their line-height/height */
-  margin-right: 8px; /* add some spacing between the image and the name */
+  vertical-align: middle; 
+  margin-right: 8px; 
 }
 
 .profile-pic {
   width: 40px; 
   height: 40px;
-  border-radius: 50%; /* makes the image circular */
+  border-radius: 50%; 
   width: 40px;
   height: 35px;
 }
@@ -945,6 +944,14 @@ page-link2{
   right: 10px; 
   font-size: 0.8em; 
   color: grey;
+}
+
+.postDate1{
+  position: absolute;
+  bottom: 10px;
+  right: 140px; 
+  /* font-size: 0.8em;  */
+  
 }
 
 
@@ -980,7 +987,7 @@ page-link2{
     width: 100%;
     padding: 10px 15px;
     border: none;
-    color: #24292e;  /* This is a typical GitHub color */
+    color: #24292e;  
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -1011,7 +1018,7 @@ page-link2{
 
 .login-with-github-btn .fa-github {
   position: absolute; 
-  left: 12px;  /* Same position as Google icon */
+  left: 12px;  
   top: 50%; 
   transform: translateY(-50%);
   font-size: 20px;
@@ -1073,7 +1080,7 @@ page-link2{
   gap: 4px;  
   justify-content: space-between;
 
-  /* overflow: visible;  */
+  
 
   min-width: 50px; 
   max-width: 100%;
@@ -1107,11 +1114,17 @@ page-link2{
 
 .dropdown-link {
   
-  display: block;
-  padding: 15px 0; 
+  display: flex;
+  padding: 30px 0; 
   padding-left: 15px;
   text-align: left; 
+
+  border-bottom: 1px solid #cccccc;
+
+  align-items: center;
+    gap: 10px;
 }
+
 
 
 .profile-dropdown .dropdown-link:first-child {
@@ -1120,7 +1133,14 @@ page-link2{
 
 .profile-dropdown .dropdown-link:last-child {
   padding-bottom: 0;
+  border-bottom: none;
 }
+
+.profile-dropdown .dropdown-link {
+  display: flex;
+  align-items: center;
+}
+
 
 
 .create-post-link {
@@ -1176,4 +1196,21 @@ page-link2{
   cursor: pointer;
   z-index: 999;
 }
+
+
+.profile-container img {
+  cursor: pointer;
+  transition: all 0.3s; 
+  border-radius: 50%;
+}
+
+.profile-container img:hover {
+  transform: scale(1.3); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.profile-container img:focus {
+  outline: 2px solid #3498db; 
+}
+
 
