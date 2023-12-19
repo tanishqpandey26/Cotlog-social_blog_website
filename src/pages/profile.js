@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+
 import { Link, useNavigate } from "react-router-dom";
+
 import { useAuthState } from "react-firebase-hooks/auth";
+
 import { signOut } from "firebase/auth";
+
 import { collection, getDocs, deleteDoc, doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+
 import { IoCreateOutline, IoLogOutOutline } from "react-icons/io5";
+
 import { BiTrash } from "react-icons/bi";
 import {BsBookmarkPlusFill} from "react-icons/bs";
 import {BsFillHeartFill} from "react-icons/bs";
@@ -11,7 +17,9 @@ import {BiSolidBookmarkStar} from "react-icons/bi";
 import {BiSolidCommentDetail} from "react-icons/bi";
 import {MdOutlineArrowUpward} from "react-icons/md";
 
-import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import { BsHeart, BsHeartFill,BsBookmarkFill  } from 'react-icons/bs';
+
+
 
 import {BiSave} from "react-icons/bi";
 import { FaList } from 'react-icons/fa';
@@ -39,6 +47,8 @@ function Profile(isAuth) {
     const [likedPosts, setLikedPosts] = useState([]);
 
     const postsCollectionRef = collection(db, "posts");
+
+    
 
     const deletePost = async (id) => {
         const postDoc = doc(db, "posts", id);
@@ -153,8 +163,8 @@ function Profile(isAuth) {
       );
     };
 
-    
-    
+
+   
     
 
     return (
@@ -236,13 +246,15 @@ function Profile(isAuth) {
                         </Link>
 
                         <Link
-                          onClick={() => {
-                            setDropdownVisible(false);
-                          }}
-                          className="dropdown-link dropdown-liked-posts"
-                        >
-                          <BiSolidBookmarkStar /> Bookmarks
-                        </Link>
+  onClick={() => {
+    setDropdownVisible(false);
+   
+  }}
+  className="dropdown-link dropdown-liked-posts"
+>
+  <BiSolidBookmarkStar /> Bookmarks
+</Link>
+
 
                         <Link to="/" className="dropdown-link loginpage-link2" onClick={signUserOut}>
                           <IoLogOutOutline style={{ marginRight: '1px' }} /> Log Out
@@ -282,6 +294,16 @@ function Profile(isAuth) {
                 <div className="title">
                   <h1> {post.institute}</h1>
                 </div>
+
+
+                {/* <div className="postBookmark">
+  {bookmarkedPosts.includes(post.id) ? (
+    <BsBookmarkFill onClick={() => handleBookmarkToggle(post.id)} />
+  ) : (
+    <BsBookmarkPlusFill onClick={() => handleBookmarkToggle(post.id)} />
+  )}
+</div> */}
+
 
                 
 
