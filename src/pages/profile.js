@@ -164,8 +164,6 @@ function Profile(isAuth) {
     };
 
 
-   
-    
 
     return (
 
