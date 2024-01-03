@@ -182,7 +182,7 @@ function Profile(isAuth) {
         width="25" 
         height="25" 
         onClick={() => setDropdownVisible(!dropdownVisible)}
-        alt="User profile picture. Click to open dropdown menu." 
+        alt="dp" 
         tabIndex="0" 
         onKeyPress={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -204,6 +204,7 @@ function Profile(isAuth) {
                   
                        <div className="dropdown-username">
                        <img 
+                       alt="dp"
     src={auth.currentUser?.photoURL || ""} 
     width="25" 
     height="25" 
@@ -234,16 +235,16 @@ function Profile(isAuth) {
                           <BiSolidCommentDetail /> Your Posts
                         </Link>
 
-                        <Link
+                        {/* <Link
                           onClick={() => {
                             setDropdownVisible(false);
                           }}
                           className="dropdown-link dropdown-liked-posts"
                         >
                           <BsFillHeartFill /> Liked Posts
-                        </Link>
+                        </Link> */}
 
-                        <Link
+                        {/* <Link
   onClick={() => {
     setDropdownVisible(false);
    
@@ -251,7 +252,7 @@ function Profile(isAuth) {
   className="dropdown-link dropdown-liked-posts"
 >
   <BiSolidBookmarkStar /> Bookmarks
-</Link>
+</Link> */}
 
 
                         <Link to="/" className="dropdown-link loginpage-link2" onClick={signUserOut}>
@@ -281,7 +282,7 @@ function Profile(isAuth) {
         {filteredPosts.map((post) => {
           const readableDate = format(new Date(post.createdAt), 'PPP');
 
-          const liked = isPostLiked(post.id);
+          // const liked = isPostLiked(post.id);
 
 
           return (
@@ -294,14 +295,7 @@ function Profile(isAuth) {
                 </div>
 
 
-                {/* <div className="postBookmark">
-  {bookmarkedPosts.includes(post.id) ? (
-    <BsBookmarkFill onClick={() => handleBookmarkToggle(post.id)} />
-  ) : (
-    <BsBookmarkPlusFill onClick={() => handleBookmarkToggle(post.id)} />
-  )}
-</div> */}
-
+               
 
                 
 
@@ -335,13 +329,13 @@ function Profile(isAuth) {
                   <h3> {post.author.name}</h3>
                 </div>
 
-                <div className="postDate1">
+                {/* <div className="postDate1">
               {liked ? (
                 <BsHeartFill onClick={() => handleUnlikePost(post.id)} />
               ) : (
                 <BsHeart onClick={() => handleLikePost(post.id)} />
               )}
-            </div>
+            </div> */}
 
                 <div className="postDate"> {readableDate}</div>
 
