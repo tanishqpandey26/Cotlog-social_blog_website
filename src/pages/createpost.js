@@ -144,12 +144,7 @@ function CreatePost(isAuth) {
     </div>
 
 
-    <div className="file">
-        <input type="file" onChange={(event)=>{
-            setImageUpload(event.target.files[0]);
-        }}></input>
-        <button  onClick={uploadImage}><MdFileUpload/></button>
-    </div>
+    
 
 
     <button onClick={createPost}>Submit </button>
